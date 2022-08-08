@@ -7,6 +7,8 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 
+Respuesta: Cuando no le colocamos el var a una variable, lo que estamos haciendo es definirlo en el contexto global, es decir las variables no declaradas son siempre globales.
+
 ```javascript
 x = 1;
 var a = 5;
@@ -28,6 +30,15 @@ c(8,9,10);
 console.log(b);
 console.log(x);
 ```
+Imprime:
+10
+8
+8
+9
+10
+1
+
+
 
 ```javascript
 console.log(bar);
@@ -37,6 +48,9 @@ function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
 ```
+Imprime:
+undefined
+baz is not defined
 
 ```javascript
 var instructor = "Tony";
@@ -45,6 +59,8 @@ if(true) {
 }
 console.log(instructor);
 ```
+Imprime:
+Franco
 
 ```javascript
 var instructor = "Tony";
@@ -57,6 +73,10 @@ console.log(instructor);
 })();
 console.log(instructor);
 ```
+Imprime:
+Tony
+Franco
+Tony
 
 ```javascript
 var instructor = "Tony";
@@ -70,6 +90,12 @@ if (true) {
 console.log(instructor);
 console.log(pm);
 ```
+Imprime:
+The Flash
+Reverse Flash
+The Flash
+Franco
+
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
@@ -92,6 +118,23 @@ parseInt("09")
 3>2>1
 [] == ![]
 ```
+Imprime:
+2
+6
+9px
+$45
+2
+NaN
+Infinity
+[0]
+9
+2
+5
+5
+5
+23
+false
+true
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
 
@@ -113,6 +156,9 @@ function test() {
 
 test();
 ```
+Imprime:
+undefined
+2
 
 Y el de este código? :
 
@@ -129,6 +175,8 @@ function getFood(food) {
 
 getFood(false);
 ```
+Imprime:
+undefined
 
 
 ### This
@@ -153,6 +201,9 @@ var test = obj.prop.getFullname;
 
 console.log(test());
 ```
+Imprime:
+Aurelio de Rosa
+Juan Perez
 
 ### Event loop
 
@@ -168,3 +219,8 @@ function printing() {
 
 printing();
 ```
+Imprime:
+1
+4
+3
+2
