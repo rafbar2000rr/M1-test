@@ -19,9 +19,21 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+ 
+  var contador=1;
+    
+  return function(){
+        return contador++;
+  }
 }
+    
+/*const nuevoContador = counter()
+      nuevoContador()     // 1
+      nuevoContador()     // 2
+      nuevoContador()     // 3*/
 
-function cacheFunction(cb) {
+
+  function cacheFunction(cb) {
   /*
   Ejercicio 2
 
@@ -41,6 +53,28 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+  var memCache ={};
+  
+  return function(n){
+    if(memCache.hasOwnProperty(n)===true){
+      return memCache[n];
+    }
+    var resultado = cb(n);
+    memCache[n] = resultado;
+    return resultado;
+  }
+
+  /*function square(n){
+    return n * n
+  }
+
+  const squareCache = cacheFunction(square)
+  console.log(squareCache(5))    // invocará a square(5), almacenará el resultado y lo retornará
+  console.log(squareCache(5))    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, 
+  //podés usar hasOwnProperty) */
+
+
+
 }
 
 // Bind
@@ -64,25 +98,28 @@ function getNombre() {
 
   IMPORTANTE: no modificar el código de arriba (variables instructor y alumno, y función getNombre)
 
-  Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
+  Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, 
+  respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor=getNombre.bind(instructor);
+let getNombreAlumno=getNombre.bind(alumno);
 
 /*
   Ejercicio 4
   
-  Sin modificar la función crearCadena, usar bind para guardar, en las tres variables declaradas a continuación, tres funciones que retornen una cadena (string) y el delimitador especificado (asteriscos, guiones, y guiones bajos, respectivamente). Las funciones obtenidas deberían recibir solamente un argumento - la cadena de texto - ya que los otros argumentos habrán sido "bindeados". 
+  Sin modificar la función crearCadena, usar bind para guardar, en las tres variables declaradas a continuación, tres funciones que retornen una cadena (string) y el delimitador 
+  especificado (asteriscos, guiones, y guiones bajos, respectivamente). Las funciones obtenidas deberían recibir solamente un argumento - la cadena de texto - ya que los otros
+   argumentos habrán sido "bindeados". 
 */
 
 function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos;
-let textoGuiones;
-let textoUnderscore;
+let textoAsteriscos= crearCadena.bind(null,"*", "*" );
+let textoGuiones= crearCadena.bind(null,"-", "-" );
+let textoUnderscore= crearCadena.bind(null,"_", "_" );
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
